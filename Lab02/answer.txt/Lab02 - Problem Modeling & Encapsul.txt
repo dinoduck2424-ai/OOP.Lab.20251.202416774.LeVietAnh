@@ -1,0 +1,59 @@
+Lab02 - Problem Modeling & Encapsulation
+Student: [Viet Anh Le]  Class: IT3010E (nếu có)
+Date: 16/10/2025
+
+1. Use-case diagram:
+   - Actors: Customer, StoreManager, System
+   - Key use-cases:
+     * Browse DVDs
+     * Search DVDs (by title / category / price)
+     * View DVD details
+     * Play demo
+     * Add to cart / View cart / Update quantity / Remove from cart
+     * Sort cart (by title / by cost)
+     * Filter in cart
+     * Get lucky item (free)
+     * Place order (delivery + invoice + payment)
+     * Manager: Login, Manage DVDs, View/Manage orders
+   - Files submitted: Requirement/yourname_usecase.astah, Requirement/yourname_usecase.png
+
+2. Class diagram:
+   - Main classes: DigitalVideoDisc, Cart, Aims (main)
+   - DigitalVideoDisc attributes: id:int, title:String, category:String, director:String, length:int, cost:float
+     * Only getters provided; no public setters (preserve encapsulation).
+   - Cart: itemsOrdered: DigitalVideoDisc[], qtyOrdered:int, MAX_NUMBERS_ORDERED = 20
+     * Methods implemented: addDigitalVideoDisc, removeDigitalVideoDisc, totalCost, printCart,
+       sortByTitle, sortByCost, searchById, searchByTitle, updateQuantity, totalCostWithLuckyFree
+   - Files submitted: Design/yourname_classdiagram.astah, Design/yourname_classdiagram.png
+
+3. Implementation summary (src/):
+   - DigitalVideoDisc.java: overloaded constructors, getters, play(), toString().
+   - Cart.java: array-based cart with MAX_NUMBERS_ORDERED=20; methods above implemented.
+   - Aims.java: demo program exercising Cart and DigitalVideoDisc features.
+   - Source location: Lab02/src/
+
+4. Reading assignment:
+   - Mindmap file: ReadingAssignment/yourname_mindmap.png
+   - Short summary: Holub argues that frequent use of getters and setters breaks encapsulation
+     and leads to procedural-style code. Prefer telling objects to perform actions (tell-don't-ask).
+     Use accessors only when necessary (DTOs, serialization, UI bindings).
+
+5. Notes / design choices:
+   - No public setters for DigitalVideoDisc to preserve encapsulation as required.
+   - Cart currently models multiple copies by duplicating references to the same DigitalVideoDisc object.
+     If stricter quantity tracking is required, implement a CartItem (disc + quantity).
+   - Lucky free feature: randomly chooses one item to be free when computing discounted total.
+
+6. How to run:
+   - In Eclipse: create Java project (AimsProject), copy files from Lab02/src into project's src/ and run Aims.java.
+   - Command-line:
+       javac *.java
+       java Aims
+     (Run in directory Lab02/src where .java files are)
+
+7. Optional improvements:
+   - Implement CartItem with quantity field.
+   - Add Order & Invoice classes for full order processing.
+   - Add unit tests (JUnit) for cart operations.
+
+End of file.
