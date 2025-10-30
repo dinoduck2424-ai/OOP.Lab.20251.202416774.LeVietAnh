@@ -1,72 +1,74 @@
 package aims;
 
 public class DigitalVideoDisc {
-	 private int id;
-	    private String title;
-	    private String category;
-	    private String director;
-	    private int length; // in minutes
-	    private float cost;
 
-	   
-	    public DigitalVideoDisc() { }
+    private static int nbDigitalVideoDiscs = 0;
 
-	   
-	    public DigitalVideoDisc(String title) {
-	        this.title = title;
-	    }
+    private int id;
+    private String title;
+    private String category;
+    private String director;
+    private int length;
+    private float cost;
 
-	  
-	    public DigitalVideoDisc(String category, String title, float cost) {
-	        this.category = category;
-	        this.title = title;
-	        this.cost = cost;
-	    }
 
-	   
-	    public DigitalVideoDisc(String director, String category, String title, float cost) {
-	        this.director = director;
-	        this.category = category;
-	        this.title = title;
-	        this.cost = cost;
-	    }
+    private void autoAssignId() {
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
+    }
 
-	   
-	    public DigitalVideoDisc(int id, String title, String category, String director, int length, float cost) {
-	        this.id = id;
-	        this.title = title;
-	        this.category = category;
-	        this.director = director;
-	        this.length = length;
-	        this.cost = cost;
-	    }
-	
+  
+    public DigitalVideoDisc(String title) {
+        this.title = title;
+        autoAssignId();
+    }
 
-	    
-	    public int getId() { return id; }
-	    public String getTitle() { return title; }
-	    public String getCategory() { return category; }
-	    public String getDirector() { return director; }
-	    public int getLength() { return length; }
-	    public float getCost() { return cost; }
+  
+    public DigitalVideoDisc(String category, String title, float cost) {
+        this.category = category;
+        this.title = title;
+        this.cost = cost;
+        autoAssignId();
+    }
 
-	   
-	    public void play() {
-	        if (length <= 0) {
-	            System.out.println("Cannot play DVD '" + title + "': length is 0 or less.");
-	        } else {
-	            System.out.println("Playing demo of '" + title + "' (" + length + " mins)...");
-	            // simulate playing
-	        }
-	    }
+   
+    public DigitalVideoDisc(String director, String category, String title, float cost) {
+        this.director = director;
+        this.category = category;
+        this.title = title;
+        this.cost = cost;
+        autoAssignId();
+    }
 
-public void setTitle(String title) {
-    this.title = title;
-}
-	    @Override
-	    public String toString() {
-	        return String.format("DVD[id=%d, title='%s', category='%s', director='%s', length=%d, cost=%.2f]",
-	                id, title, category, director, length, cost);
-	    }
+  
+    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        this.title = title;
+        this.category = category;
+        this.director = director;
+        this.length = length;
+        this.cost = cost;
+        autoAssignId();
+    }
 
+  
+    public void setTitle(String title) { this.title = title; }
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+    public String getCategory() { return category; }
+    public String getDirector() { return director; }
+    public int getLength() { return length; }
+    public float getCost() { return cost; }
+
+   
+    @Override
+    public String toString() {
+    
+        return "DVD - " + this.id + " - [" + this.title + "] - [" + this.category + "] - ["
+                + this.director + "] - " + this.length + ": " + this.cost + " $";
+    }
+
+    public boolean isMatch(String title) {
+        if (title == null || this.title == null) return false;
+        return this.title.toLowerCase().contains(title.toLowerCase());
+    }
 }
