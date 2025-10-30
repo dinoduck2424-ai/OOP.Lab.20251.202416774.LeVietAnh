@@ -40,6 +40,7 @@ public class DigitalVideoDisc {
 	        this.length = length;
 	        this.cost = cost;
 	    }
+	
 
 	    
 	    public int getId() { return id; }
@@ -59,6 +60,9 @@ public class DigitalVideoDisc {
 	        }
 	    }
 
+public void setTitle(String title) {
+    this.title = title;
+}
 	    @Override
 	    public String toString() {
 	        return String.format("DVD[id=%d, title='%s', category='%s', director='%s', length=%d, cost=%.2f]",

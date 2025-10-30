@@ -1,4 +1,4 @@
-package aims;
+package aims; 
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -14,6 +14,7 @@ public class Cart {
         qtyOrdered = 0;
     }
 
+   
     public void addDigitalVideoDisc(DigitalVideoDisc disc) {
         if (qtyOrdered >= MAX_NUMBERS_ORDERED) {
             System.out.println("The cart is almost full. Cannot add disc: " + disc.getTitle());
@@ -22,34 +23,37 @@ public class Cart {
         itemsOrdered[qtyOrdered++] = disc;
         System.out.println("The disc has been added: " + disc.getTitle());
     }
+
+   
     public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
         if (dvdList == null) {
             System.out.println("Danh sách DVD bị rỗng.");
             return;
         }
-        
-        // Lặp qua mảng và gọi lại phương thức gốc (thêm 1 DVD)
         for (DigitalVideoDisc disc : dvdList) {
-            // Tái sử dụng code từ phương thức gốc của bạn
             this.addDigitalVideoDisc(disc); 
         }
     }
+
+    
     public void addDigitalVideoDisc(DigitalVideoDisc... dvdList) {
         if (dvdList == null) {
             System.out.println("Danh sách DVD bị rỗng.");
             return;
         }
-        
-        // Lặp qua mảng (Java tự động coi varargs là mảng)
         for (DigitalVideoDisc disc : dvdList) {
             this.addDigitalVideoDisc(disc);
         }
     }
+
+    
     public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-        // Tái sử dụng code từ phương thức gốc
         this.addDigitalVideoDisc(dvd1);
         this.addDigitalVideoDisc(dvd2);
     }
+    
+ 
+
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         int idx = -1;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -78,7 +82,6 @@ public class Cart {
         return sum;
     }
 
-    
     public float totalCostWithLuckyFree() {
         if (qtyOrdered == 0) return 0f;
         Random r = new Random();
@@ -92,13 +95,42 @@ public class Cart {
         return sum;
     }
 
-    public void printCart() {
-        System.out.println("===== CART CONTENTS (" + qtyOrdered + " items) =====");
+   
+    public void print() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items (" + qtyOrdered + " items):");
         for (int i = 0; i < qtyOrdered; i++) {
             System.out.println((i+1) + ". " + itemsOrdered[i].toString());
         }
         System.out.printf("Total cost: %.2f\n", totalCost());
+        System.out.println("**************************************************");
     }
+
+    
+    public DigitalVideoDisc searchByID(int id) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                System.out.println("Found: " + itemsOrdered[i]);
+                return itemsOrdered[i];
+            }
+        }
+        System.out.println("Not found ID: " + id);
+        return null;
+    }
+
+   
+    public DigitalVideoDisc searchByTitle(String title) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getTitle().equalsIgnoreCase(title)) {
+                System.out.println("Found: " + itemsOrdered[i]);
+                return itemsOrdered[i];
+            }
+        }
+        System.out.println("Not found Title: " + title);
+        return null;
+    }
+
+ 
 
     public void sortByTitle() {
         DigitalVideoDisc[] copy = Arrays.copyOf(itemsOrdered, qtyOrdered);
@@ -107,7 +139,6 @@ public class Cart {
             public int compare(DigitalVideoDisc d1, DigitalVideoDisc d2) {
                 int cmp = d1.getTitle().compareToIgnoreCase(d2.getTitle());
                 if (cmp != 0) return cmp;
-                
                 return Float.compare(d2.getCost(), d1.getCost());
             }
         });
@@ -122,7 +153,6 @@ public class Cart {
             public int compare(DigitalVideoDisc d1, DigitalVideoDisc d2) {
                 int cmp = Float.compare(d2.getCost(), d1.getCost()); 
                 if (cmp != 0) return cmp;
-                
                 return d1.getTitle().compareToIgnoreCase(d2.getTitle());
             }
         });
@@ -130,44 +160,7 @@ public class Cart {
         for (DigitalVideoDisc d : copy) System.out.println(d);
     }
 
-    public DigitalVideoDisc searchById(int id) {
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].getId() == id) return itemsOrdered[i];
-        }
-        return null;
-    }
-
-    public DigitalVideoDisc searchByTitle(String title) {
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].getTitle().equalsIgnoreCase(title)) return itemsOrdered[i];
-        }
-        return null;
-    }
-
-    
     public void updateQuantity(DigitalVideoDisc disc, int newQuantity) {
-        if (newQuantity < 0) {
-            System.out.println("Invalid quantity.");
-            return;
-        }
         
-        int count = 0;
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].getId() == disc.getId()) count++;
-        }
-        if (newQuantity == count) {
-            System.out.println("Quantity unchanged for " + disc.getTitle());
-            return;
-        } else if (newQuantity > count) {
-            int toAdd = newQuantity - count;
-            for (int k = 0; k < toAdd; k++) {
-                addDigitalVideoDisc(disc); 
-            }
-        } else {
-            int toRemove = count - newQuantity;
-            for (int i = 0; i < toRemove; i++) {
-                removeDigitalVideoDisc(disc);
-            }
-        }
     }
 }
