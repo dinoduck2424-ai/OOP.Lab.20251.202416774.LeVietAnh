@@ -22,7 +22,34 @@ public class Cart {
         itemsOrdered[qtyOrdered++] = disc;
         System.out.println("The disc has been added: " + disc.getTitle());
     }
-
+    public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+        if (dvdList == null) {
+            System.out.println("Danh sách DVD bị rỗng.");
+            return;
+        }
+        
+        // Lặp qua mảng và gọi lại phương thức gốc (thêm 1 DVD)
+        for (DigitalVideoDisc disc : dvdList) {
+            // Tái sử dụng code từ phương thức gốc của bạn
+            this.addDigitalVideoDisc(disc); 
+        }
+    }
+    public void addDigitalVideoDisc(DigitalVideoDisc... dvdList) {
+        if (dvdList == null) {
+            System.out.println("Danh sách DVD bị rỗng.");
+            return;
+        }
+        
+        // Lặp qua mảng (Java tự động coi varargs là mảng)
+        for (DigitalVideoDisc disc : dvdList) {
+            this.addDigitalVideoDisc(disc);
+        }
+    }
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        // Tái sử dụng code từ phương thức gốc
+        this.addDigitalVideoDisc(dvd1);
+        this.addDigitalVideoDisc(dvd2);
+    }
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         int idx = -1;
         for (int i = 0; i < qtyOrdered; i++) {
