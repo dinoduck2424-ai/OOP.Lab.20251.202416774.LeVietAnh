@@ -1,4 +1,6 @@
-Score: 8/10
+Score: 6/10
 Comments:
 - Nếu muốn dùng DigitalVideoDisc ở các file khác thì cần import
 - Chưa trl các câu hỏi
+- Thiếu subpackage test trong src
+- Thiếu class GarbageCreator & NoGarbage
