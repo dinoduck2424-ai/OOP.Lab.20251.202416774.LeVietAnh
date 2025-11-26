@@ -3,22 +3,22 @@ package hust.soict.cs.aims.store;
 import hust.soict.cs.aims.disc.DigitalVideoDisc;
 
 public class Store {
-    public static final int MAX_NUMBERS_IN_STORE = 100;  //Max number of DVD
+    public static final int MAX_NUMBERS_IN_STORE = 100;  // Số lượng DVD tối đa trong cửa hàng
     private DigitalVideoDisc itemsInStore[] = new DigitalVideoDisc[MAX_NUMBERS_IN_STORE];
-    private int curInStore = 0;  //Number of current DVD
+    private int curInStore = 0;  // Số lượng DVD hiện tại
 
-    //Add DVD to Store
+    // Thêm DVD vào cửa hàng
     public void addDVD(DigitalVideoDisc disc) {
         if (curInStore < MAX_NUMBERS_IN_STORE) {
             itemsInStore[curInStore] = disc;
             curInStore++;
-            System.out.println("The disc \"" + disc.getTitle() + "\" has been added to the store.");
+            System.out.println("Đĩa \"" + disc.getTitle() + "\" đã được thêm vào cửa hàng.");
         } else {
-            System.out.println("The store is full. Cannot add more DVDs.");
+            System.out.println("Cửa hàng đã đầy. Không thể thêm DVD.");
         }
     }
 
-    //Remove DVD to Store
+    // Xóa DVD khỏi cửa hàng
     public void removeDVD(DigitalVideoDisc disc) {
         int idx;
         for (idx = 0; idx < curInStore; idx++) {
@@ -28,7 +28,7 @@ public class Store {
         }
 
         if (idx == curInStore) {
-            System.out.println("The disc \"" + disc.getTitle() + "\" was not found in the store.");
+            System.out.println("Đĩa \"" + disc.getTitle() + "\" không tìm thấy trong cửa hàng.");
             return;
         }
 
@@ -36,10 +36,10 @@ public class Store {
             itemsInStore[i] = itemsInStore[i + 1];
         }
         curInStore--;
-        System.out.println("The disc \"" + disc.getTitle() + "\" has been removed from the store.");
+        System.out.println("Đĩa \"" + disc.getTitle() + "\" đã được xóa khỏi cửa hàng.");
     }
 
-    //Show all DVD in Store
+    // Hiển thị tất cả DVD trong cửa hàng
     public void print() {
         System.out.println("***********************STORE***********************");
         for (int i = 0; i < curInStore; i++) {

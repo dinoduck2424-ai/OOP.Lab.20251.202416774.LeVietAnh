@@ -2,20 +2,20 @@ package hust.soict.cs.aims.disc;
 
 public class DigitalVideoDisc {
 
-    //Attributes
+    // Các thuộc tính (fields)
     private String title;
     private String category;
     private String director;
     private int length;
     private float cost;
     
-    //Classifier member
+    // Thành viên của lớp (static) - dùng để đếm
     private static int nbDigitalVideoDiscs = 0;
 
-    //Instance member
+    // Thành viên của đối tượng (instance) - ID riêng
     private int id;
 
-    //Constructors
+    // Các hàm tạo
     public DigitalVideoDisc(String title) {
         this.title = title;
         nbDigitalVideoDiscs++;
@@ -49,7 +49,7 @@ public class DigitalVideoDisc {
         this.id = nbDigitalVideoDiscs;
     }
 
-    //Getters
+    // Các phương thức Getter
     public int getId() {
         return id;
     }
@@ -73,40 +73,41 @@ public class DigitalVideoDisc {
     public float getCost() {
         return cost;
     }
-    //Setters
+    
+    // Các phương thức Setter
     public void setTitle(String title) {
-    this.title = title;
+        this.title = title;
     }
 
-    //Find out if the corresponding disk is a match given the title
+    // Kiểm tra xem tiêu đề có khớp với từ khóa không
     public boolean isMatch(String title) {
         return this.title.equalsIgnoreCase(title);
     }
 
-    //Override
+    // Ghi đè phương thức toString()
     public String toString() {
         return "DVD - " + this.title + " - " + this.category + " - " + this.director
             + " - " + this.length + ": " + this.cost + " $";
     }
 
-    //Methods
+    // Các phương thức khác
     public void play() {
         if (length <= 0) {
-            System.out.println("This DVD cannot be played!");
+            System.out.println("DVD này không thể phát được!");
         } else {
-            System.out.println("Playing DVD: " + title);
-            System.out.println("DVD length: " + length);
+            System.out.println("Đang phát DVD: " + title);
+            System.out.println("Độ dài DVD: " + length);
         }
     }
 
     public void displayDiscInfo() {
-        System.out.println("----- DVD Info -----");
+        System.out.println("----- Thông tin DVD -----");
         System.out.println("ID: " + id);
-        System.out.println("Title: " + title);
-        System.out.println("Category: " + category);
-        System.out.println("Director: " + director);
-        System.out.println("Length: " + length);
-        System.out.println("Cost: " + cost);
+        System.out.println("Tiêu đề: " + title);
+        System.out.println("Thể loại: " + category);
+        System.out.println("Đạo diễn: " + director);
+        System.out.println("Độ dài: " + length);
+        System.out.println("Giá: " + cost);
         System.out.println("--------------------");
     }
 }
