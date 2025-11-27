@@ -1,32 +1,54 @@
 package hust.soict.cs.aims.cart;
-import hust.soict.cs.aims.disc.DigitalVideoDisc;
+
+import hust.soict.cs.dsai.aims.media.*;
 
 public class CartTest {
     public static void main(String[] args) {
-        //Create a new cart
+
         Cart cart = new Cart();
 
-        //Create new dvd objects and add them to the cart
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        cart.addDigitalVideoDisc(dvd1);
+        System.out.println("===== TEST ADD MEDIA =====");
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc(1, "The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc(2, "Star Wars", "Sci-Fi", "George Lucas", 124, 24.95f);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc(3, "Aladdin", "Animation", "Guy Ritchie", 90, 18.99f);
 
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-        cart.addDigitalVideoDisc(dvd2);
+        cart.addMedia(dvd1);
+        cart.addMedia(dvd2);
+        cart.addMedia(dvd3);
+        cart.addMedia(dvd2);   // duplicate test
 
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
-        cart.addDigitalVideoDisc(dvd3);
+        System.out.println();
+        cart.printCart();
 
-        //Test the print method
-        cart.print();
-        //To-do: Test the search methods here
 
-        System.out.println("\nSearch by ID:");
-        cart.searchById(2);
+        System.out.println("\n===== TEST SEARCH =====");
+        Media found = cart.searchByTitle("star");
+        if (found != null)
+            System.out.println("Found media: " + found.getTitle());
+        else
+            System.out.println("Not found");
 
-        System.out.println("\nSearch by Title:");
-        cart.searchByTitle("Aladdin");
+        found = cart.searchByTitle("king");
+        if (found != null)
+            System.out.println("Found media: " + found.getTitle());
 
-        System.out.println("\nSearch with no match:");
-        cart.searchByTitle("Avengers");
-    }  
+
+        System.out.println("\n===== TEST REMOVE =====");
+        cart.removeMedia(dvd2);
+        cart.printCart();
+
+
+        System.out.println("\n===== TEST SORTING =====");
+        System.out.println("Sort by Title then Cost:");
+        cart.sortByTitleCost();
+        cart.printCart();
+
+        System.out.println("\nSort by Cost then Title:");
+        cart.sortByCostTitle();
+        cart.printCart();
+
+
+        System.out.println("\n===== TEST TOTAL COST =====");
+        System.out.println("Total cost = " + cart.totalCost());
+    }
 }
