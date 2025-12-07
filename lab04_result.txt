@@ -1,0 +1,5 @@
+Score: 7/10
+Comments:
+- Ko có use case & class diagram
+- Thiếu các class cần Comparator
+- Chưa trl câu hỏi
