@@ -1,8 +1,8 @@
-package hust.soict.cs.aims;
+package hust.soict.cs.dsai.aims;
 
-import hust.soict.cs.aims.cart.Cart;
-import hust.soict.cs.aims.store.Store;
+import hust.soict.cs.dsai.aims.cart.Cart;
 import hust.soict.cs.dsai.aims.media.*;
+import hust.soict.cs.dsai.aims.store.Store;
 
 import java.util.Scanner;
 
@@ -13,11 +13,11 @@ public class Aims {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        seedStore();   // dữ liệu mẫu để test nhanh
+        seedStore();   
         showMainMenu();
     }
 
-    // ================= MẪU DỮ LIỆU =================
+   
     private static void seedStore() {
         store.addMedia(new DigitalVideoDisc(1, "The Matrix", "Action", "Wachowski", 136, 10.0f));
         store.addMedia(new DigitalVideoDisc(2, "Inception", "Sci-Fi", "Nolan", 148, 12.0f));
@@ -32,7 +32,7 @@ public class Aims {
         store.addMedia(cd);
     }
 
-    // ================= MENU CHÍNH =================
+   
     public static void showMainMenu() {
         while (true) {
             System.out.println("\n===== AIMS MAIN MENU =====");
@@ -52,7 +52,7 @@ public class Aims {
         }
     }
 
-    // ================= STORE MENU =================
+   
     private static void viewStore() {
         while (true) {
             System.out.println("\n===== STORE =====");

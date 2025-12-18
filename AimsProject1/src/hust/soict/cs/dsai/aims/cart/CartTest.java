@@ -1,4 +1,4 @@
-package hust.soict.cs.aims.cart;
+package hust.soict.cs.dsai.aims.cart;
 
 import hust.soict.cs.dsai.aims.media.*;
 
