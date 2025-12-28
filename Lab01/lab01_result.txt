@@ -1,2 +1,0 @@
-Score: 0/10
-Comments: Thiếu cả code các bài khác & báo cáo ở 2 branch
